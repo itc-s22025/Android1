@@ -22,6 +22,8 @@ class MenuThanksActivity : AppCompatActivity() {
 
         // リストに戻るボタンをタップしたときの処理
         binding.btThxBack.setOnClickListener{
+            //インテント生成するたびにその画面がフロントに生成されていく
+            // ので、finish()で前に来た画面を終了させる(バックボダン押したときと同じ動きになる)
             finish()
         }
 
