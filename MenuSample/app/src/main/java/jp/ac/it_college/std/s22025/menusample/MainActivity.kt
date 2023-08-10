@@ -2,8 +2,10 @@ package jp.ac.it_college.std.s22025.menusample
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //ToolBarをActionBarとして使う
+        setSupportActionBar(binding.toolbar)
+
         initList(binding.lvMenu)
     }
 
@@ -30,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         view.layoutManager = layoutManager
         view.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        //コンテキストメニューを有効化する
+//        registerForContextMenu(view)
 
     }
 
@@ -62,4 +69,19 @@ class MainActivity : AppCompatActivity() {
         binding.lvMenu.adapter?.notifyDataSetChanged()
         return true
     }
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        //親クラスの処理
+        super.onCreateContextMenu(menu, v, menuInfo)
+
+        //コンテキストメニューを作る
+        menuInflater.inflate(R.menu.menu_context_menu_list, menu)
+
+        //コンテキストメニューのヘッダータイトルを設定
+        menu?.setHeaderTitle(R.string.menu_list_context_header)
+    }
+
 }
