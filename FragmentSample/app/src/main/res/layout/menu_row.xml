@@ -15,7 +15,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="マリトッツォ" />
+        tools:text="たべもの" />
 
     <TextView
         android:id="@+id/menuPrice"
@@ -28,6 +28,7 @@
         app:layout_constraintStart_toStartOf="@+id/menuName"
         app:layout_constraintTop_toBottomOf="@+id/menuName"
         tools:text="450" />
+
 
     <TextView
         android:id="@+id/priceUnit"

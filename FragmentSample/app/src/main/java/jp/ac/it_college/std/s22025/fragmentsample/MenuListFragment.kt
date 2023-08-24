@@ -20,11 +20,13 @@ internal const val RESULT_NAME = "menuName"
 /** Fragment Result API を通じて Activity へ価格を返すための識別子 */
 internal const val RESULT_PRICE = "menuPrice"
 
+
+//メニュー一覧を表示するためのフラグメント
 class MenuListFragment : Fragment() {
-    // Bindingクラスのインスタンスを入れておくプロパティ(Nullable)
+    //Binding クラスのインスタンスを入れておくプロパティ(Nullable)
     private var _binding: FragmentMenuListBinding? = null
 
-    // Activity の時と同じように binding を使うための工夫
+    //Activityのときと同じようにbindingを使うための工夫
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,6 +39,7 @@ class MenuListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.menuList.apply {
+
             adapter = MenuAdapter(teishokuList) {
                 parentFragmentManager.setFragmentResult(
                     REQUEST_SELECTED_MENU, bundleOf(
@@ -52,7 +55,9 @@ class MenuListFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        //viewの破棄
         super.onDestroyView()
+        //どっからも参照してないとき？　ガベージコレクションのためにかいとく
         _binding = null
     }
 }
